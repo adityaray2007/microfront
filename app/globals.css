@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #ffffff;
+  --color-surface: #fafafa;
+  --color-border: #e5e5e5;
+  --color-muted: #71717a;
+  --color-fg: #09090b;
+  --color-accent: #ff3000;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --sw-accent: #ff3000;
+  --sw-accent-glow: #ff5500;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #09090b;
+  color-scheme: light;
+}
+
+body {
+  background-color: #ffffff;
+  color: #09090b;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for clean UI elements while retaining scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus outline accessibility with Orange Accent */
+:focus-visible {
+  outline: 2px solid #ff3000;
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   SWISS INTERNATIONAL DESIGN PATTERNS & TRANSITIONS (From Project EEG)
+   ============================================================ */
+
+/* Swiss Background Patterns */
+.swiss-grid-pattern {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.swiss-dots {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.swiss-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(0,0,0,0.03) 8px,
+    rgba(0,0,0,0.03) 9px
+  );
+}
+
+/* Swiss Marquee Animation: Left to Right (→) */
+@keyframes swiss-marquee-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0%); }
+}
+
+.swiss-marquee-track {
+  animation: swiss-marquee-ltr 26s linear infinite;
+}
+
+.swiss-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Swiss Signal Sweep Animation */
+@keyframes swiss-sweep {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.swiss-signal-sweep {
+  animation: swiss-sweep 8s linear infinite;
+}
+
+/* Animated pulse keyframes */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Swiss Mechanical Button Transitions */
+.swiss-btn-primary {
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  transition: background 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out, transform 150ms ease-out;
+  cursor: pointer;
+}
+.swiss-btn-primary:hover {
+  background: #ff3000;
+  border-color: #ff3000;
+  color: #ffffff;
+}
+
+.swiss-btn-outline {
+  background: transparent;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  transition: background 150ms ease-out, color 150ms ease-out;
+  cursor: pointer;
+}
+.swiss-btn-outline:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Swiss Card Snappy Hover Transitions */
+.swiss-feature-card {
+  transition: background 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out, transform 160ms ease-out;
+  border: 2px solid #000000;
+}
+.swiss-feature-card:hover {
+  background: #ff3000 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+.swiss-feature-card:hover .sw-card-icon {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+.swiss-feature-card:hover .sw-muted-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Swiss Zone / Elevation Card Hover */
+.swiss-zone-card {
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out;
+}
+.swiss-zone-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -6px rgba(255, 48, 0, 0.15);
+  border-color: #ff3000 !important;
+}
+
+/* Swiss Nav Link Slide Animation (reveal orange text on hover) */
+.swiss-nav-link {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.2;
+}
+.swiss-nav-link .link-default {
+  display: block;
+  transition: transform 150ms ease-out;
+}
+.swiss-nav-link .link-hover {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #ff3000;
+  transition: transform 150ms ease-out;
+}
+.swiss-nav-link:hover .link-default {
+  transform: translateY(-100%);
+}
+.swiss-nav-link:hover .link-hover {
+  transform: translateY(-100%);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .swiss-signal-sweep,
+  .swiss-marquee-track {
+    animation: none !important;
+  }
+  .swiss-btn-primary,
+  .swiss-btn-outline,
+  .swiss-feature-card,
+  .swiss-zone-card,
+  .swiss-nav-link .link-default,
+  .swiss-nav-link .link-hover {
+    transition: none !important;
+  }
+}
